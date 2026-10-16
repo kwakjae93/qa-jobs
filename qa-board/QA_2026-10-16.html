@@ -3,25 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>게임 QA 공고 보드</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<title>게임 QA 공고 보드 2026-10-16</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: one narrow column of bug-ticket style cards, filter chips on top, summary strip first */
 :root {
-  --bg: #f3f4f7;
-  --surface: #ffffff;
-  --fg: #1b1e2b;
-  --muted: #5d6275;
-  --line: #dfe2ea;
-  --accent: #2f45c4;
-  --accent-soft: #e6e9fb;
-  --urgent: #c2410c;
-  --urgent-soft: #fdeee4;
-  --ok: #1f7a4d;
-  --ok-soft: #e3f3ea;
+  --bg: #f3f4f7; --surface: #ffffff; --fg: #1b1e2b; --muted: #5d6275; --line: #dfe2ea;
+  --accent: #2f45c4; --accent-soft: #e6e9fb; --urgent: #c2410c; --urgent-soft: #fdeee4;
+  --ok: #1f7a4d; --ok-soft: #e3f3ea;
   --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
 }
@@ -38,10 +28,7 @@
   --ok: #6fd3a0; --ok-soft: #1a3328; color-scheme: dark;
 }
 * { box-sizing: border-box; }
-body {
-  background: var(--bg); color: var(--fg); font-family: var(--font-body);
-  font-size: 15px; line-height: 1.55;
-}
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
 .wrap {
   max-width: 760px; margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
@@ -54,30 +41,20 @@ header { display: flex; flex-direction: column; gap: 6px; }
 h1 { margin: 0; font-size: 26px; line-height: 1.3; text-wrap: balance; }
 .sub { margin: 0; color: var(--muted); font-size: 14px; }
 .sub a { color: var(--accent); }
-
 .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .stat b { font-size: 22px; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 12.5px; color: var(--muted); }
 .stat.urgent b { color: var(--urgent); }
-
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
-.filters button {
-  font: inherit; font-size: 13.5px; padding: 6px 13px; border-radius: 999px;
-  border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer;
-}
+.filters button { font: inherit; font-size: 13.5px; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
 .filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
 .filters button:focus-visible, .star:focus-visible, .card a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
 section { display: flex; flex-direction: column; gap: 10px; }
-h2 { margin: 6px 0 0; font-size: 16px; display: flex; align-items: baseline; gap: 8px; }
+h2 { margin: 6px 0 0; font-size: 16px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 h2 small { font-weight: 400; color: var(--muted); font-size: 13px; }
 .list { display: flex; flex-direction: column; gap: 10px; }
-
-.card {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-  padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px;
-}
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; }
 .card .top { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; min-width: 0; }
 .co { font-weight: 700; font-size: 14px; }
 .id { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
@@ -87,6 +64,8 @@ h2 small { font-weight: 400; color: var(--muted); font-size: 13px; }
 .chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { font-size: 12.5px; padding: 2px 9px; border-radius: 6px; background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
 .chip.entry { background: var(--ok-soft); color: var(--ok); border-color: transparent; font-weight: 500; }
+.src { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; padding: 1px 7px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+.src.am { color: var(--accent); border-color: var(--accent); }
 .right { display: flex; align-items: center; gap: 8px; }
 .due { font-family: var(--font-mono); font-size: 12.5px; padding: 3px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
 .due.soon { background: var(--urgent-soft); color: var(--urgent); }
@@ -96,31 +75,25 @@ h2 small { font-weight: 400; color: var(--muted); font-size: 13px; }
 .card.dim { display: none; }
 .empty { color: var(--muted); font-size: 14px; padding: 8px 2px; }
 footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); padding-top: 14px; }
-
-@media (max-width: 480px) {
-  h1 { font-size: 22px; }
-  .stat b { font-size: 19px; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .filters button, .star, .title a { transition: background .15s, color .15s, border-color .15s; }
-}
-body{margin:0}
+@media (max-width: 480px) { h1 { font-size: 22px; } .stat b { font-size: 19px; } }
+@media (prefers-reduced-motion: no-preference) { .filters button, .star, .title a { transition: background .15s, color .15s, border-color .15s; } }
 </style>
 </head>
 <body>
-
 <div class="wrap">
   <header>
-    <div class="eyebrow">GameJob · QA·테스터 · 조회 2026-10-16</div>
+    <div class="eyebrow">GameJob + Albamon · 게임 QA · 조회 2026-10-16</div>
     <h1>게임 QA 공고 보드</h1>
-    <p class="sub">게임잡 QA·테스터 직종 공고 50건 중 최근 1주일 신규 9건과 참고 공고 5건이에요. 공고 제목을 누르면 원문이 열려요. <a href="https://www.gamejob.co.kr/Recruit/joblist?menucode=duty">게임잡에서 전체 보기</a></p>
+    <p class="sub">최근 1주일 신규 공고를 게임잡에서 10건, 알바몬에서 10건 모았어요. 그 전 주의 게임잡 신입·경력무관 공고도 함께 넣었어요. 공고 제목을 누르면 원문이 열려요. <a href="https://www.gamejob.co.kr/Recruit/joblist?menucode=duty">게임잡</a> · <a href="https://www.albamon.com/total-search?keyword=%EA%B2%8C%EC%9E%84QA">알바몬</a>에서 전체 보기</p>
   </header>
 
   <div class="summary" id="summary"></div>
 
   <div class="filters" role="group" aria-label="공고 필터">
     <button type="button" id="f-all" data-f="all" aria-pressed="true">전체</button>
-    <button type="button" id="f-entry" data-f="entry" aria-pressed="false">신입·경력무관</button>
+    <button type="button" id="f-gj" data-f="gj" aria-pressed="false">게임잡</button>
+    <button type="button" id="f-am" data-f="am" aria-pressed="false">알바몬</button>
+    <button type="button" id="f-entry" data-f="entry" aria-pressed="false">신입·초보 가능</button>
     <button type="button" id="f-full" data-f="full" aria-pressed="false">정규직</button>
     <button type="button" id="f-soon" data-f="soon" aria-pressed="false">마감 임박</button>
     <button type="button" id="f-star" data-f="star" aria-pressed="false">☆ 관심 공고</button>
@@ -132,72 +105,60 @@ body{margin:0}
   </section>
 
   <section>
-    <h2>참고: 조금 전 공고 <small>10/07 ~ 10/08 등록 · 경력무관</small></h2>
+    <h2>참고: 그 전 주 공고 <small>10/02 ~ 10/08 등록 · 신입·경력무관</small></h2>
     <div class="list" id="list-ref"></div>
   </section>
 
-  <footer>등록일은 게임잡의 "○일 전 등록" 표시를 날짜로 바꾼 것이라 하루 정도 차이가 날 수 있어요. 마감 여부와 자격 조건은 지원 전에 원문에서 다시 확인하세요. 관심 공고 표시는 이 브라우저에만 저장돼요.</footer>
+  <footer>같은 공고가 두 사이트에 함께 올라온 경우도 있어요. 알바몬은 회사 이름 칸에 키워드를 적는 공고가 많고, '초보 가능'은 알바몬 공고의 우대 조건에서 가져왔어요. 등록일은 "○일 전 등록" 표시를 날짜로 바꾼 것이라 하루 정도 차이가 날 수 있어요. 마감 여부와 자격 조건은 지원 전에 원문에서 다시 확인하세요. 관심 공고 표시는 이 브라우저에만 저장돼요.</footer>
 </div>
 
 <script>
-const U = "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=";
-const JOBS = [
-  { id: 285938, g: "new", reg: "10/16", co: "쿡앱스", title: "모바일게임 QA (계약직)", exp: "경력 1년↑", type: "계약직", loc: "경기 성남", due: "채용시" },
-  { id: 285935, g: "new", reg: "10/15", co: "그린맨파워", title: "[상암] 유명중견 게임사 모바일 MMORPG 게임 QA", exp: "신입", type: "파견직", loc: "서울 마포", due: "10/20" },
-  { id: 285869, g: "new", reg: "10/14", co: "게임듀오", title: "[경력] 모바일 게임 QA", exp: "경력 1년↑", type: "정규직", loc: "경기 성남", due: "상시" },
-  { id: 285807, g: "new", reg: "10/13", co: "무브인터렉티브", title: "QA팀 신입 채용", exp: "신입", type: "정규직", loc: "경기 파주", due: "상시" },
-  { id: 285836, g: "new", reg: "10/13", co: "이엑스투게임즈", title: "[Ex2게임즈] QA", exp: "경력 1년↑", type: "계약직", loc: "서울 강남", due: "채용시" },
-  { id: 285823, g: "new", reg: "10/12", co: "기어세컨드", title: "모바일 게임 QA", exp: "경력 3년↑", type: "계약직", loc: "서울 성동", due: "채용시" },
-  { id: 285751, g: "new", reg: "10/12", co: "스마일게이트", title: "[LOST ARK Mobile] FQA 담당", exp: "경력 3년↑", type: "정규직", loc: "경기 성남", due: "채용시" },
-  { id: 285750, g: "new", reg: "10/12", co: "스마일게이트", title: "[LOST ARK Mobile] 개발QA 담당", exp: "경력 1년↑", type: "정규직", loc: "경기 성남", due: "채용시" },
-  { id: 285749, g: "new", reg: "10/12", co: "스마일게이트", title: "[LOST ARK Mobile] 개발QA 담당 (계약직)", exp: "경력무관", type: "계약직", loc: "경기 성남", due: "채용시" },
-  { id: 285646, g: "ref", reg: "10/08", co: "스튜디오비사이드", title: "[프로젝트 A] QA 담당자", exp: "경력무관", type: "정규직·계약직", loc: "경기 성남", due: "채용시" },
-  { id: 285604, g: "ref", reg: "10/07", co: "위메이드", title: "게임 QA (계약직)", exp: "경력무관", type: "계약직", loc: "경기 성남", due: "10/20" },
-  { id: 285592, g: "ref", reg: "10/07", co: "코리아인", title: "[성남/유명기업] 게임QA 채용", exp: "경력무관", type: "정규직·파견직", loc: "경기·서울", due: "10/24" },
-  { id: 285587, g: "ref", reg: "10/07", co: "컴투스", title: "런처(PC 클라이언트) QA (계약직)", exp: "경력무관", type: "계약직", loc: "서울 금천", due: "상시" },
-  { id: 285636, g: "ref", reg: "10/08", co: "NC", title: "[AION2] 영어 번역 / 검수 (English Linguist & LQA, 단기계약직)", exp: "신입", type: "계약직", loc: "경기 성남", due: "10/31" }
-];
+const JOBS = [{"id":119747725,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/119747725","reg":"10/16","co":"MMORPG/QA/테스터/게임","title":"국내 유명 게임사 모바일 MMORPG 게임QA","exp":"초보 가능","type":"근무 1년이상","loc":"서울 마포구","pay":"월급 2,290,200원","due":"10/21","dueIso":"2026-10-21"},{"id":119742846,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/119742846","reg":"10/16","co":"글로벌게임사","title":"[마포상암/성과급지급] 글로벌게임사 게임QA 직원 채용","exp":"조건 확인","type":"근무 1년이상","loc":"서울 전체","pay":"월급 2,290,200원","due":"10/21","dueIso":"2026-10-21"},{"id":119432505,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/119432505","reg":"10/16","co":"유명게임사/라그나로크 경험자 우대/테스터","title":"[마포 상암역 /유명 중견 게임사/ 신입환영]모바일 게임 QA 대규모채용","exp":"초보 가능","type":"근무 1년이상","loc":"서울 마포구","pay":"월급 2,290,200원","due":"10/16","dueIso":"2026-10-16"},{"id":119737880,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/119737880","reg":"10/16","co":"리드커리어㈜","title":"[게임운영대행사 / 큐로드] 디바이스 성능 측정 QA 채용","exp":"조건 확인","type":"근무 6개월~1년","loc":"서울 영등포구","pay":"연봉 27,000,000원","due":"11/03","dueIso":"2026-11-03"},{"id":119632042,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/119632042","reg":"10/16","co":"카카오계열/판교/ 플랫폼 QA 테스터","title":"[판교인근/카카오계열사 QA전문사] 게임 QA 대규모 추가채용","exp":"조건 확인","type":"근무 1년이상","loc":"경기 성남시 분당구","pay":"월급 2,208,340원","due":"10/23","dueIso":"2026-10-23"},{"id":285989,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285989","reg":"10/16","co":"휴머니아","title":"[마포상암/성과급지급] 글로벌게임사 게임QA테스터 채용","exp":"경력무관","type":"파견직","loc":"서울 마포","pay":"","due":"10/21","dueIso":"2026-10-21"},{"id":285938,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285938","reg":"10/16","co":"쿡앱스(CookApps)","title":"[쿡앱스] 모바일게임 QA (계약직)","exp":"경력 1년↑","type":"계약직","loc":"경기 성남","pay":"","due":"채용시","dueIso":null},{"id":285935,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285935","reg":"10/15","co":"그린맨파워","title":"[상암] 유명중견 게임사 모바일 MMORPG 게임 QA","exp":"신입","type":"파견직","loc":"서울 마포","pay":"","due":"10/20","dueIso":"2026-10-20"},{"id":502063023,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/502063023","reg":"10/14","co":"큐로드","title":"[11월출근 / 게임 ] 큐로드 게임 QA담당자 채용","exp":"조건 확인","type":"근무 6개월~1년","loc":"서울 영등포구","pay":"연봉 27,000,000원","due":"상시","dueIso":null},{"id":502063258,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/502063258","reg":"10/14","co":"㈜휴머니아","title":"[마포상암/성과급지급] 글로벌게임사 게임QA 직원 채용","exp":"조건 확인","type":"근무 1년이상","loc":"서울 마포구","pay":"월급 2,290,000원","due":"10/21","dueIso":"2026-10-21"},{"id":285807,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285807","reg":"10/13","co":"무브인터렉티브","title":"[무브인터렉티브] QA팀 신입 채용","exp":"신입","type":"정규직","loc":"경기 파주","pay":"","due":"상시","dueIso":null},{"id":285869,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285869","reg":"10/13","co":"게임듀오","title":"[경력] 모바일 게임 QA","exp":"경력 1년↑","type":"정규직","loc":"경기 성남","pay":"","due":"상시","dueIso":null},{"id":502062236,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/502062236","reg":"10/12","co":"㈜큐로드","title":"[전남광주] 게임 QA 담당자 채용","exp":"조건 확인","type":"근무 1년이상","loc":"전남광주 동구","pay":"연봉 27,000,000원","due":"11/11","dueIso":"2026-11-11"},{"id":502062240,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/502062240","reg":"10/12","co":"㈜큐로드","title":"[전남광주] 게임 LQA 담당자 채용 (영어)","exp":"조건 확인","type":"근무 1년이상","loc":"전남광주 동구","pay":"연봉 27,000,000원","due":"11/11","dueIso":"2026-11-11"},{"id":119692934,"g":"new","src":"알바몬","url":"https://www.albamon.com/jobs/detail/119692934","reg":"10/12","co":"㈜조이시티","title":"[조이시티] 프리스타일 풋볼2게임테스터 모집 (5일 근무)","exp":"조건 확인","type":"근무 1주일~1개월","loc":"경기 성남시 분당구 수내동","pay":"시급 14,000원","due":"11/02","dueIso":"2026-11-02"},{"id":285823,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285823","reg":"10/12","co":"기어세컨드","title":"[기어세컨드] 모바일 게임 QA","exp":"경력 3년↑","type":"계약직","loc":"서울 성동","pay":"","due":"채용시","dueIso":null},{"id":285836,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285836","reg":"10/12","co":"이엑스투게임즈","title":"[Ex2게임즈] QA","exp":"경력 1년↑","type":"계약직","loc":"서울 강남","pay":"","due":"채용시","dueIso":null},{"id":285751,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285751","reg":"10/12","co":"스마일게이트","title":"[LOST ARK Mobile] FQA 담당","exp":"경력 3년↑","type":"정규직","loc":"경기 성남","pay":"","due":"채용시","dueIso":null},{"id":285749,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285749","reg":"10/12","co":"스마일게이트","title":"[LOST ARK Mobile] 개발QA 담당 (계약직)","exp":"경력무관","type":"계약직","loc":"경기 성남","pay":"","due":"채용시","dueIso":null},{"id":285750,"g":"new","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285750","reg":"10/12","co":"스마일게이트","title":"[LOST ARK Mobile] 개발QA 담당 모집","exp":"경력 1년↑","type":"정규직","loc":"경기 성남","pay":"","due":"채용시","dueIso":null},{"id":285634,"g":"ref","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285634","reg":"10/08","co":"NC","title":"[NC][단기계약직][AION2] 게임 현지화 독일어 번역 / 검수 (Deutsch Linguist und LQA)","exp":"신입","type":"계약직","loc":"경기 성남","pay":"","due":"10/31","dueIso":"2026-10-31"},{"id":285636,"g":"ref","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285636","reg":"10/08","co":"NC","title":"[NC][단기계약직][AION2] 게임 현지화 영어 번역 / 검수 (English Linguist \u0026 LQA)","exp":"신입","type":"계약직","loc":"경기 성남","pay":"","due":"10/31","dueIso":"2026-10-31"},{"id":285646,"g":"ref","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285646","reg":"10/08","co":"스튜디오비사이드","title":"[프로젝트 A] QA 담당자","exp":"경력무관","type":"정규직·계약직","loc":"경기 성남","pay":"","due":"채용시","dueIso":null},{"id":285587,"g":"ref","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285587","reg":"10/07","co":"컴투스","title":"[컴투스] 런처(PC 클라이언트) QA (계약직)","exp":"경력무관","type":"계약직","loc":"서울 금천","pay":"","due":"상시","dueIso":null},{"id":285604,"g":"ref","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285604","reg":"10/07","co":"위메이드","title":"게임 QA(계약직)","exp":"경력무관","type":"계약직","loc":"경기 성남","pay":"","due":"11/04","dueIso":"2026-11-04"},{"id":285592,"g":"ref","src":"게임잡","url":"https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285592","reg":"10/07","co":"코리아인","title":"[성남/유명기업] 게임QA 채용","exp":"경력무관","type":"정규직·파견직","loc":"경기·서울","pay":"","due":"10/24","dueIso":"2026-10-24"}];
 
 const KEY = "qa-board-stars";
 let stars = new Set();
 try { stars = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e) {}
 function saveStars() { try { localStorage.setItem(KEY, JSON.stringify([...stars])); } catch (e) {} }
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-function dday(due) {
-  const m = /^(\d{1,2})\/(\d{1,2})$/.exec(due);
-  if (!m) return null;
+function dday(j) {
+  if (!j.dueIso) return null;
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  const d = new Date(2026, +m[1] - 1, +m[2]);
-  return Math.round((d - today) / 86400000);
+  const [y, m, d] = j.dueIso.split("-").map(Number);
+  return Math.round((new Date(y, m - 1, d) - today) / 86400000);
 }
-const isEntry = j => j.exp === "신입" || j.exp === "경력무관";
-const isSoon = j => { const n = dday(j.due); return n !== null && n >= 0 && n <= 7; };
+const isEntry = j => j.exp === "신입" || j.exp === "경력무관" || j.exp === "초보 가능";
+const key = j => j.src + ":" + j.id;
+const isSoon = j => { const n = dday(j); return n !== null && n >= 0 && n <= 7; };
 
 function dueBadge(j) {
-  const n = dday(j.due);
-  if (n === null) return `<span class="due open">${j.due}</span>`;
+  const n = dday(j);
+  if (n === null) return `<span class="due open">${esc(j.due)}</span>`;
   const label = n < 0 ? "마감됨" : n === 0 ? "D-day" : `D-${n}`;
-  return `<span class="due${n <= 7 ? " soon" : ""}">~${j.due} · ${label}</span>`;
+  return `<span class="due${n <= 7 ? " soon" : ""}">~${esc(j.due)} · ${label}</span>`;
 }
 
 function card(j) {
   const el = document.createElement("article");
   el.className = "card";
-  el.dataset.id = j.id;
+  el.dataset.key = key(j);
+  const on = stars.has(key(j));
   el.innerHTML = `
-    <div class="top"><span class="co">${j.co}</span><span class="id">#${j.id} · ${j.reg} 등록</span></div>
-    <div class="right">${dueBadge(j)}<button type="button" class="star" id="star-${j.id}" aria-label="관심 공고 표시" aria-pressed="${stars.has(j.id)}">${stars.has(j.id) ? "★" : "☆"}</button></div>
-    <div class="title"><a href="${U}${j.id}" target="_blank" rel="noopener">${j.title}</a></div>
+    <div class="top"><span class="src${j.src === "알바몬" ? " am" : ""}">${esc(j.src)}</span><span class="co">${esc(j.co)}</span><span class="id">#${j.id} · ${esc(j.reg)} 등록</span></div>
+    <div class="right">${dueBadge(j)}<button type="button" class="star" id="star-${j.src === "알바몬" ? "am" : "gj"}-${j.id}" aria-label="관심 공고 표시" aria-pressed="${on}">${on ? "★" : "☆"}</button></div>
+    <div class="title"><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></div>
     <div class="chips">
-      <span class="chip${isEntry(j) ? " entry" : ""}">${j.exp}</span>
-      <span class="chip">${j.type}</span>
-      <span class="chip">${j.loc}</span>
+      <span class="chip${isEntry(j) ? " entry" : ""}">${esc(j.exp)}</span>
+      <span class="chip">${esc(j.type)}</span>
+      <span class="chip">${esc(j.loc)}</span>
+      ${j.pay ? `<span class="chip">${esc(j.pay)}</span>` : ""}
     </div>`;
   el.querySelector(".star").addEventListener("click", e => {
-    stars.has(j.id) ? stars.delete(j.id) : stars.add(j.id);
+    const k = key(j);
+    stars.has(k) ? stars.delete(k) : stars.add(k);
     saveStars();
-    e.currentTarget.setAttribute("aria-pressed", stars.has(j.id));
-    e.currentTarget.textContent = stars.has(j.id) ? "★" : "☆";
+    e.currentTarget.setAttribute("aria-pressed", stars.has(k));
+    e.currentTarget.textContent = stars.has(k) ? "★" : "☆";
     if (current === "star") apply();
   });
   return el;
@@ -213,13 +174,13 @@ document.getElementById("summary").innerHTML = `
   <div class="stat urgent"><b>${JOBS.filter(isSoon).length}</b><span>7일 안에 마감</span></div>`;
 
 let current = "all";
-const tests = { all: () => true, entry: isEntry, full: j => j.type.includes("정규직"), soon: isSoon, star: j => stars.has(j.id) };
+const tests = { all: () => true, gj: j => j.src === "게임잡", am: j => j.src === "알바몬", entry: isEntry, full: j => j.type.includes("정규직"), soon: isSoon, star: j => stars.has(key(j)) };
 function apply() {
   document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", b.dataset.f === current));
   for (const g of Object.keys(lists)) {
     let shown = 0;
     lists[g].querySelectorAll(".card").forEach(c => {
-      const ok = tests[current](JOBS.find(j => j.id === +c.dataset.id));
+      const ok = tests[current](JOBS.find(j => key(j) === c.dataset.key));
       c.classList.toggle("dim", !ok); if (ok) shown++;
     });
     let empty = lists[g].querySelector(".empty");
@@ -228,7 +189,7 @@ function apply() {
   }
 }
 document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => { current = b.dataset.f; apply(); }));
+apply();
 </script>
-
 </body>
 </html>
